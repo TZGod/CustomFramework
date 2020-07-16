@@ -7,13 +7,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.DefaultParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 
 @Component
 @Aspect
@@ -57,10 +53,14 @@ public class ServiceAspect {
         System.out.println("bean::"+bean.toString());
         Method[] declaredMethods = value.getDeclaredMethods();
         for (Method f:declaredMethods) {
+            if (f.getName().equals(name1)){
+                Object invoke = f.invoke(bean, args[0]);
+                System.out.println("结果=="+invoke);
+                return invoke;
+            }
             System.out.println(f.getName());
         }
-        Object invoke = declaredMethods[1].invoke(bean, args[0]);
-        System.out.println("结果=="+invoke);
+
         return null;
     }
 
