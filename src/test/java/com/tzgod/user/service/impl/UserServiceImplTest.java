@@ -21,16 +21,19 @@ public class UserServiceImplTest {
             private UserServiceImpl userServiceimpl;
             @Test
             public void insertUser() {
-                userService.insertUser("sansan",null);
+                userServiceimpl.insertUser("sansan",null);
             }
 
 //            @Test
 //            public void selectUser() {
 //                System.out.println(userServiceImpl.selectUser(new Users(null,"zhangsan",null)));
 //            }
+
             @Test
             public void selectUser() {
                 List<Users> zhangsan = userService.selectUser(new Users(null, "zhangsan", "123456"));
+            System.out.println(zhangsan);
+
             }
 
 }
